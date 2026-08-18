@@ -1,21 +1,27 @@
 {
   "name": "companion-import",
-  "version": "1.0.0",
-  "description": "从本地 Codex 目录导入宠物到 Tipuu",
+  "version": "2.0.0",
+  "description": "从本地 Codex 目录上传宠物到 Tipuu 领取页暂存并确认",
   "author": "Tipuu Team",
-  "tags": ["import", "codex", "local", "pet"],
+  "tags": ["import", "codex", "local", "pet", "upload"],
   "parameters": {
-    "callback-url": {
+    "session-id": {
       "type": "string",
-      "required": false,
-      "description": "回调地址，必须包含 source=claim。省略时按顺序尝试：$TIPUU_ORIGIN → ~/.tipuu/config.json.origin → 交互输入 → 报错退出",
-      "example": "https://你的域名/local-import.html?source=claim"
+      "required": true,
+      "description": "领取页创建的暂存会话 ID，绑定当前用户，10 分钟内有效",
+      "example": "9f2c1a3e-..."
     },
-    "channel": {
+    "token": {
       "type": "string",
-      "required": false,
-      "default": "tipuu-local-import",
-      "description": "消息通道名称，领取页需监听相同通道"
+      "required": true,
+      "description": "一次性上传令牌，随会话由领取页生成，用后即失效",
+      "example": "64 位十六进制字符串"
+    },
+    "upload-url": {
+      "type": "string",
+      "required": true,
+      "description": "服务端上传地址，形如 https://你的域名/ai-toy/import/upload",
+      "example": "https://你的域名/ai-toy/import/upload"
     },
     "pet-id": {
       "type": "string",
@@ -26,21 +32,20 @@
   "constraints": [
     "仅扫描 ~/.codex/pets/* 目录",
     "只处理本地宠物目录",
-    "只回传 pet.json 和 spritesheet 文件",
+    "只上传 pet.json 和 spritesheet 文件",
     "不会上传其他数据"
   ],
-  "events": {
-    "candidate-selected": {
-      "channel": "tipuu-local-import",
-      "payload": ["manifestFile", "spritesheetFile"],
-      "description": "用户选择宠物后触发的事件"
-    }
+  "upload": {
+    "method": "POST",
+    "content-type": "multipart/form-data",
+    "fields": ["session_id", "token", "manifest", "spritesheet"],
+    "success-message": "导入完成，请在浏览器领取页主动刷新一次页面确认"
   },
   "error-scenarios": [
     "缺失 pet.json 或 spritesheet",
     "JSON 解析失败",
-    "回传超时",
-    "目标通道不可达"
+    "上传失败（HTTP 非 2xx）",
+    "上传地址不可达"
   ],
-  "fallback": "本地 skill 不可用时，保留手动上传兜底流程"
+  "fallback": "本地 skill 不可用时，保留领取页的手动上传兜底流程"
 }
