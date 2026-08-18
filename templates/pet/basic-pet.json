@@ -1,0 +1,25 @@
+{
+  "id": "basic-pet-template",
+  "name": "My Pet",
+  "version": "1.0.0",
+  "description": "A basic pet template for Tipuu",
+  "author": "Your Name",
+  "spritesheet": "spritesheet.png",
+  "animations": {
+    "idle": {
+      "frames": [0, 1, 2, 3],
+      "frameRate": 8,
+      "loop": true
+    },
+    "walk": {
+      "frames": [4, 5, 6, 7],
+      "frameRate": 12,
+      "loop": true
+    }
+  },
+  "metadata": {
+    "created": "2026-08-18",
+    "tags": ["basic", "template"],
+    "license": "MIT"
+  }
+}

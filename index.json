@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-08-18",
+  "repository": "https://github.com/Tipuu-AI/tipuu-hub",
+  "skills": [
+    {
+      "name": "companion-import",
+      "version": "1.0.0",
+      "path": "skills/companion-import",
+      "description": "从本地 Codex 目录导入宠物到 Tipuu",
+      "tags": ["import", "codex", "local", "pet"],
+      "entry": "skill.md"
+    }
+  ],
+  "docs": [
+    {
+      "name": "getting-started",
+      "path": "docs/getting-started",
+      "description": "快速上手指南",
+      "status": "placeholder"
+    },
+    {
+      "name": "guides",
+      "path": "docs/guides",
+      "description": "使用指南",
+      "status": "placeholder"
+    },
+    {
+      "name": "api",
+      "path": "docs/api",
+      "description": "API 文档",
+      "status": "placeholder"
+    },
+    {
+      "name": "faq",
+      "path": "docs/faq",
+      "description": "常见问题",
+      "status": "placeholder"
+    }
+  ],
+  "templates": [
+    {
+      "name": "basic-pet",
+      "path": "templates/pet/basic-pet.json",
+      "type": "pet-template",
+      "status": "placeholder"
+    }
+  ],
+  "examples": [
+    {
+      "name": "basic-usage",
+      "path": "examples/basic",
+      "description": "基础使用示例",
+      "status": "placeholder"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "companion-import",
+  "version": "1.0.0",
+  "description": "从本地 Codex 目录导入宠物到 Tipuu",
+  "author": "Tipuu Team",
+  "tags": ["import", "codex", "local", "pet"],
+  "parameters": {
+    "callback-url": {
+      "type": "string",
+      "required": false,
+      "description": "回调地址，必须包含 source=claim",
+      "example": "https://你的域名/local-import.html?source=claim"
+    },
+    "channel": {
+      "type": "string",
+      "default": "tipuu-local-import",
+      "description": "消息通道名称"
+    },
+    "pet-id": {
+      "type": "string",
+      "required": false,
+      "description": "指定要导入的宠物 ID"
+    }
+  },
+  "constraints": [
+    "仅扫描 ~/.codex/pets/* 目录",
+    "只处理本地宠物目录",
+    "只回传 pet.json 和 spritesheet 文件",
+    "不会上传其他数据"
+  ],
+  "events": {
+    "candidate-selected": {
+      "channel": "tipuu-local-import",
+      "payload": ["manifestFile", "spritesheetFile"],
+      "description": "用户选择宠物后触发的事件"
+    }
+  },
+  "error-scenarios": [
+    "缺失 pet.json 或 spritesheet",
+    "JSON 解析失败",
+    "回传超时",
+    "目标通道不可达"
+  ],
+  "fallback": "本地 skill 不可用时，保留手动上传兜底流程"
+}
