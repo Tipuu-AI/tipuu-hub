@@ -21,9 +21,9 @@ tipuu-companion-import --callback-url "https://你的域名/local-import.html?so
 
 | 参数 | 类型 | 必填 | 默认值 | 说明 |
 |------|------|------|--------|------|
-| `--callback-url` | string | 否 | - | 回调地址，必须包含 `source=claim` |
-| `--channel` | string | 否 | `tipuu-local-import` | 消息通道名称 |
-| `--pet-id` | string | 否 | - | 指定要导入的宠物 ID |
+| `--callback-url` | string | 否 | `$TIPUU_ORIGIN` → `~/.tipuu/config.json.origin` → 交互输入 → 报错 | 回调地址，必须包含 `source=claim`。推荐由领取页生成完整 URL |
+| `--channel` | string | 否 | `tipuu-local-import` | 消息通道名称，领取页需监听相同通道 |
+| `--pet-id` | string | 否 | - | 指定要导入的宠物 ID，省略时列出所有可用宠物交互选择 |
 
 ## 约束
 

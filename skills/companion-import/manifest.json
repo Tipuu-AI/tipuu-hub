@@ -8,18 +8,19 @@
     "callback-url": {
       "type": "string",
       "required": false,
-      "description": "回调地址，必须包含 source=claim",
+      "description": "回调地址，必须包含 source=claim。省略时按顺序尝试：$TIPUU_ORIGIN → ~/.tipuu/config.json.origin → 交互输入 → 报错退出",
       "example": "https://你的域名/local-import.html?source=claim"
     },
     "channel": {
       "type": "string",
+      "required": false,
       "default": "tipuu-local-import",
-      "description": "消息通道名称"
+      "description": "消息通道名称，领取页需监听相同通道"
     },
     "pet-id": {
       "type": "string",
       "required": false,
-      "description": "指定要导入的宠物 ID"
+      "description": "指定要导入的宠物 ID，省略时列出所有可用宠物交互选择"
     }
   },
   "constraints": [
