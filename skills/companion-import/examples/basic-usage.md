@@ -18,9 +18,12 @@ https://raw.githubusercontent.com/Tipuu-AI/tipuu-hub/main/skills/companion-impor
 
 1. 读取提示词中的 `session-id` / `token` / `upload-url`
 2. 扫描 `~/.codex/pets/*`，列出所有可用宠物
-3. 用户选择要导入的宠物
-4. Codex 用 `curl` 上传 `pet.json` + `spritesheet`
-5. 输出固定成功文案，用户到领取页刷新确认
+3. Codex 按“JSON 内容 + 精灵图”展示可用宠物
+4. 用户选择要导入的宠物
+5. Codex 引导用户完善并确认角色设定
+6. Codex 把确认后的 `characterSetting` 写回 `pet.json`
+7. Codex 用 `curl` 上传更新后的 `pet.json` + `spritesheet`
+8. 输出固定成功文案，用户到领取页刷新确认
 
 ## 场景 1：默认导入（交互选择）
 
@@ -45,6 +48,58 @@ curl -fsS \
 ## 场景 2：只有一个宠物
 
 若 `~/.codex/pets/*` 下只有一个宠物，Codex 直接确认并上传，无需再让用户选择。
+
+## 场景 3：指定 pet-id
+
+若提示词额外包含：
+
+```text
+- pet-id: pet_abc123
+```
+
+Codex 只检查并上传 `~/.codex/pets/pet_abc123`。如果该目录不存在、缺少 `pet.json`，或找不到目录内的 webp/png 精灵图，则停止并提示用户检查本地宠物目录。
+
+## 场景 4：完善角色设定
+
+Codex 展示候选宠物后，应让用户看到类似信息：
+
+```text
+候选宠物：pet_abc123
+JSON 摘要：
+- id: cloud-sprite
+- displayName: Cloud
+- description: 一只从云层里醒来的轻盈伙伴
+- characterSetting: 暂无
+精灵图：~/.codex/pets/pet_abc123/spritesheet.webp（webp）
+```
+
+然后根据 JSON 和精灵图外观提出一版简练草稿，并用自然、亲近的语气邀请用户修改：
+
+```text
+我先按它的形象整理一版：Cloud 是从一片旧云层里醒来的轻盈伙伴，擅长观察细微的情绪变化，也喜欢把复杂的事情拆成温和的小步骤。它对新环境保持好奇，但不急着表现自己；遇到用户时，它更像一个安静同行的伙伴，愿意在需要时给出清晰、柔和的提醒。
+
+这版方向可以吗？你想让它更偏冒险、陪伴，还是更偏工作协助？
+```
+
+用户确认后，Codex 将文本写入 `pet.json` 顶层字段：
+
+```json
+{
+  "characterSetting": "Cloud 是从一片旧云层里醒来的轻盈伙伴，擅长观察细微的情绪变化，也喜欢把复杂的事情拆成温和的小步骤。它对新环境保持好奇，但不急着表现自己；遇到用户时，它更像一个安静同行的伙伴，愿意在需要时给出清晰、柔和的提醒。"
+}
+```
+
+## 精灵图解析
+
+Codex 优先使用 `pet.json` 中声明的本地相对精灵图文件名，例如：
+
+```json
+{
+  "spritesheet": "spritesheet.png"
+}
+```
+
+如果 manifest 没有可用声明，则查找同目录下的 `spritesheet.webp` 或 `spritesheet.png`。绝对路径和 `../` 路径不会被上传。
 
 ## 完整时序
 

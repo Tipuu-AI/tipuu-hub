@@ -1,11 +1,11 @@
 {
-  "version": "1.0.0",
-  "lastUpdated": "2026-08-18",
+  "version": "2.1.0",
+  "lastUpdated": "2026-08-31",
   "repository": "https://github.com/Tipuu-AI/tipuu-hub",
   "skills": [
     {
       "name": "companion-import",
-      "version": "1.0.0",
+      "version": "2.1.0",
       "path": "skills/companion-import",
       "description": "从本地 Codex 目录导入宠物到 Tipuu",
       "tags": ["import", "codex", "local", "pet"],

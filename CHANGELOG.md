@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.1.0] - 2026-08-31
+
+### Changed
+
+- Added the JSON-plus-spritesheet review step before pet selection.
+- Added user-guided `characterSetting` drafting, confirmation, and write-back before upload.
+- Clarified the intended interaction tone: natural, patient, friendly, and close while keeping final character-setting text concise.
+
+## [2.0.0] - 2026-08-30
+
+### Changed
+
+- Updated companion-import docs to match the upload-based staging flow.
+- Documented optional `pet-id` behavior.
+- Clarified spritesheet discovery for `spritesheet.webp` and `spritesheet.png`.
+- Added upload URL validation guidance to avoid sending credentials or pet files to unrelated endpoints.
+- Added native `SKILL.md` entrypoint while preserving the existing public `skill.md` raw URL.
+
 ## [1.0.0] - 2026-08-18
 
 ### Added
@@ -30,4 +48,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - 重新组织为根目录 `tipuu-hub/`
 - 扁平 `skill.md` 重组为结构化 skill 目录
 
+[2.1.0]: https://github.com/Tipuu-AI/tipuu-hub/releases/tag/v2.1.0
+[2.0.0]: https://github.com/Tipuu-AI/tipuu-hub/releases/tag/v2.0.0
 [1.0.0]: https://github.com/Tipuu-AI/tipuu-hub/releases/tag/v1.0.0

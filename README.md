@@ -10,7 +10,7 @@ Agent/Codex 可执行技能，用于自动化特定任务。
 
 | 技能 | 版本 | 说明 | 文档 |
 |------|------|------|------|
-| [companion-import](./skills/companion-import/) | 1.0.0 | 从本地 Codex 目录导入宠物 | [skill.md](./skills/companion-import/skill.md) |
+| [companion-import](./skills/companion-import/) | 2.1.0 | 从本地 Codex 目录导入宠物 | [skill.md](./skills/companion-import/skill.md) |
 
 **使用方式**：
 ```bash

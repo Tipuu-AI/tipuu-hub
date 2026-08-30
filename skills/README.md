@@ -11,7 +11,7 @@ Agent/Codex 可执行技能目录。每个技能是一个独立目录，包含�
 
 | 技能 | 版本 | 说明 |
 |------|------|------|
-| [companion-import](./companion-import/) | 1.0.0 | 从本地 Codex 目录导入宠物 |
+| [companion-import](./companion-import/) | 2.1.0 | 从本地 Codex 目录导入宠物 |
 
 ## 使用方式
 
