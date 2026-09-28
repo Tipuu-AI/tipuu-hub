@@ -1,3 +1,7 @@
+---
+name: companion-import
+description: Prepare and upload a local Codex pet from ~/.codex/pets to a Tipuu claim-page import session, including user-guided characterSetting editing.
+---
 # Tipuu Companion Import（Codex 本地宠物导入）
 
 ## 你的任务
